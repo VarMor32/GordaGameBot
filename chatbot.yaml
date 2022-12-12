@@ -16,3 +16,17 @@ nlp:
   intentNoMatchThresholds:
     phrases: 0.2
     patterns: 0.2
+name: citiesGame
+
+entryPoint:
+  - main.sc
+
+
+botEngine: v2
+language: ru
+
+sts:
+    noMatchThreshold: 0.2
+
+caila:
+    noMatchThreshold: 0.2
