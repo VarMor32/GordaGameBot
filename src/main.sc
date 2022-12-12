@@ -1,23 +1,70 @@
-require: slotfilling/slotFilling.sc
-  module = sys.zb-common
+require: responseCity.js
+
+require: city/city.sc
+    module = sys.zb-common
+
 theme: /
 
-    state: Start
+    state: Start || modal = true
         q!: $regex</start>
-        a: Здравствуйте, кто первым будет загадывать город?
+        intent!: /LetsPlay
+        script:
+            $session = {}
+            $client = {}
+            $temp = {}
+            $response = {}
+        a: Привет! Предлагаю сыграть в игру "Города". Кто загадывает город: компьютер или пользователь?
 
-    state: Hello
-        intent!: /привет
-        a: Привет привет
+        state: User
+            intent: /user
+            a: Назовите город
+            script:
+                $session.keys = Object.keys($Cities);
+                $session.prevBotCity = 0;
+            go!: /LetsPlayCitiesGame
 
-    state: Bye
-        intent!: /пока
-        a: Пока пока
+        state: Computer
+            intent: /computer
+            script:
+                $session.keys = Object.keys($Cities);
+                var city = $Cities[chooseRandCityKey($session.keys)].value.name
+                $reactions.answer(city)
+                $session.prevBotCity = city
 
-    state: NoMatch
-        event!: noMatch
-        a: Я не понял. Вы сказали: {{$request.query}}
+            go!: /LetsPlayCitiesGame
 
-    state: Match
-        event!: match
-        a: {{$context.intent.answer}}
+        state: LocalCatchAll
+            event: noMatch
+            a: Это не похоже на ответ. Попробуйте еще раз.
+
+    state: LetsPlayCitiesGame
+        state: CityPattern
+            q: * $City *
+            script:
+                if (isAFullNameOfCity()) {
+                    if (checkLetter($parseTree._City.name, $session.prevBotCity) == true
+                    || $session.prevBotCity == 0) {
+                    var removeCity = findByName($parseTree._City.name, $session.keys, $Cities)
+
+                    if (checkCity($parseTree, $session.keys, $Cities) == true) {
+                        $session.keys.splice(removeCity, 1)
+                        var key = responseCity($parseTree, $session.keys, $Cities)
+                        if (key == 0) {
+                            $reactions.answer("Я сдаюсь")
+                        } else {
+                            $reactions.answer($Cities[key].value.name)
+                            $session.prevBotCity = $Cities[key].value.name
+                            removeCity = findByName($Cities[key].value.name, $session.keys, $Cities)
+                            $session.keys.splice(removeCity, 1)
+                        }
+                    } else $reactions.answer("Этот город уже был назван")
+                    }
+                } else $reactions.answer("Используйте только полные названия городов")
+
+        state: NoMatch
+            event: noMatch
+            a: Я не знаю такого города. Попробуйте ввести другой город
+
+    state: EndGame
+        intent!: /endThisGame
+        a: Очень жаль! Если передумаешь — скажи "давай поиграем"
