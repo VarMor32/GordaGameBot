@@ -17,6 +17,7 @@
   },
   "intents" : [ {
     "path" : "/LetsPlay",
+    "description" : "Правила для запуска игры",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -32,54 +33,10 @@
       "refs" : [ ]
     },
     "patterns" : [ ],
-    "slots" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/computer",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "компьютер"
-    }, {
-      "text" : "комп"
-    }, {
-      "text" : "бездушный "
-    }, {
-      "text" : "кусок железа"
-    }, {
-      "text" : "ты"
-    }, {
-      "text" : "не я"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/пока",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "пока"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
-  }, {
-    "path" : "/привет",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "привет"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
     "priority" : 0
   }, {
     "path" : "/user",
+    "description" : "Правила пользователя",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -90,6 +47,27 @@
       "text" : "я"
     }, {
       "text" : "не ты"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/computer",
+    "description" : "Правила компьютера",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "компьютер"
+    }, {
+      "text" : "комп"
+    }, {
+      "text" : "бездушный кусок железа"
+    }, {
+      "text" : "ты"
+    }, {
+      "text" : "не я"
     } ],
     "classificationRules" : {
       "refs" : [ ]
