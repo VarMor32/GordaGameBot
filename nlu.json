@@ -16,6 +16,47 @@
     "shared" : false
   },
   "intents" : [ {
+    "path" : "/LetsPlay",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "хочу играть"
+    }, {
+      "text" : "играть"
+    }, {
+      "text" : "давай поиграем"
+    }, {
+      "text" : "давай играть"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/computer",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "компьютер"
+    }, {
+      "text" : "комп"
+    }, {
+      "text" : "бездушный "
+    }, {
+      "text" : "кусок железа"
+    }, {
+      "text" : "ты"
+    }, {
+      "text" : "не я"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
     "path" : "/пока",
     "enabled" : true,
     "shared" : false,
@@ -36,6 +77,44 @@
     "classificationRules" : {
       "refs" : [ ]
     },
+    "priority" : 0
+  }, {
+    "path" : "/user",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "человек"
+    }, {
+      "text" : "пользователь"
+    }, {
+      "text" : "я"
+    }, {
+      "text" : "не ты"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/endThisGame",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "стоп"
+    }, {
+      "text" : "надоело"
+    }, {
+      "text" : "сдаюсь"
+    }, {
+      "text" : "я устал"
+    }, {
+      "text" : "хватит"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
     "priority" : 0
   } ],
   "entities" : [ ],
